@@ -1,4 +1,4 @@
-import os
+import osGA
 import azure.functions as func
 from google.oauth2 import service_account
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
@@ -8,9 +8,9 @@ import logging
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
-@app.function_name(name="GA")
-@app.route(route="GA")
-def GA(req: func.HttpRequest) -> func.HttpResponse:
+@app.function_name(name="AD")
+@app.route(route="AD")
+def AD(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Processing GA4 data extraction.')
 
     # Cargar las credenciales desde la variable de entorno
