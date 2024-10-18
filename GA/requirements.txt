@@ -1,5 +1,0 @@
-azure-functions
-google-auth
-google-api-core
-google-analytics-data
-
