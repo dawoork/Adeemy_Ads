@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'  # Set this to the path to your web app project, defaults to the repository root
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: './GA'  # Set this to the path to your web app project, defaults to the repository root
   PYTHON_VERSION: '3.10'  # Python version to use
 
 permissions:
