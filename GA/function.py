@@ -1,4 +1,4 @@
-import osGA
+import os
 import azure.functions as func
 from google.oauth2 import service_account
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
