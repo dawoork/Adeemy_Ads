@@ -29,7 +29,7 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./GA/* -r
+        run: zip release.zip ./GA
           python -m venv venv
           source venv/bin/activate
 
