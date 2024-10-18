@@ -80,4 +80,4 @@ jobs:
           enable-oryx-build: true
 
       - name: Clean up artifacts (optional)
-        run: rm -f release.zip
+        run: zip release.zip ./GA/* -r
