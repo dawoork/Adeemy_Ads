@@ -1,7 +1,9 @@
 {
-    "azureFunctions.deploySubpath": "GA",
+    "azureFunctions.deploySubpath": ".",
     "azureFunctions.scmDoBuildDuringDeployment": true,
     "azureFunctions.projectLanguage": "Python",
     "azureFunctions.projectRuntime": "~4",
-    "debug.internalConsoleOptions": "neverOpen"
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.pythonVenv": ".venv",
+    "azureFunctions.projectLanguageModel": 2
 }
