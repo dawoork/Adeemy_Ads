@@ -24,12 +24,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Python version
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v5 
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Create and start virtual environment
-        run: |
+      - name: Zip artifact for deployment
+        run: zip release.zip ./GA/* -r
           python -m venv venv
           source venv/bin/activate
 
@@ -79,5 +79,5 @@ jobs:
           scm-do-build-during-deployment: true
           enable-oryx-build: true
 
-      - name: Zip artifact for deployment
-        run: zip release.zip ./GA/* -r
+      - name: Clean up artifacts (optional)
+        run: rm -f release.zip
