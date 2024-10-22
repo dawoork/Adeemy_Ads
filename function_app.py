@@ -32,14 +32,13 @@ def AdeemyFunctions(req: func.HttpRequest) -> func.HttpResponse:
             "property": f"properties/{os.environ['GA4_PROPERTY_ID']}",
             "dimensions": [{"name": "city"}],
             "metrics": [
-                {"name": "impressions"},  # Impresiones
-                {"name": "clicks"},  # Clics
-                {"name": "ctr"},  # Click-Through Rate (CTR)
-                {"name": "averageCpc"},  # Costo por Clic (CPC)
-                {"name": "averageCpm"},  # Costo por Mil (CPM)
-                {"name": "adCost"},  # Costo total
-                {"name": "roas"},  # Return on Ad Spend (ROAS)
-                {"name": "activeUsers"}  # Usuarios activos
+                {"name": "advertiserAdImpressions"},  # Impresiones
+                {"name": "advertiserAdClicks"},  # Clics
+                {"name": "ctr"},  # Tasa de Clics (CTR)
+                {"name": "advertiserAdCostPerClick"},  # Costo por Clic (CPC)
+                {"name": "advertiserAdCostPerMilleImpressions"},  # Costo por Mil (CPM)
+                {"name": "advertiserAdCost"},  # Costo total
+                {"name": "roas"}  # Retorno sobre Inversión Publicitaria (ROAS)
             ],
 
             "date_ranges": [{"start_date": "7daysAgo", "end_date": "today"}]
@@ -49,14 +48,13 @@ def AdeemyFunctions(req: func.HttpRequest) -> func.HttpResponse:
         for row in response.rows:
             data.append({
                 "city": row.dimension_values[0].value,
-                "impressions": row.metric_values[0].value,
-                "clicks": row.metric_values[1].value,
+                "advertiserAdImpressions": row.metric_values[0].value,
+                "advertiserAdClicks": row.metric_values[1].value,
                 "ctr": row.metric_values[2].value,
-                "averageCpc": row.metric_values[3].value,
-                "averageCpm": row.metric_values[4].value,
-                "adCost": row.metric_values[5].value,
-                "roas": row.metric_values[6].value,
-                "activeUsers": row.metric_values[7].value  # Añadido activeUsers
+                "advertiserAdCostPerClick": row.metric_values[3].value,
+                "advertiserAdCostPerMilleImpressions": row.metric_values[4].value,
+                "advertiserAdCost": row.metric_values[5].value,
+                "roas": row.metric_values[6].value
             })
         # Convertir datos a JSON
         data_json = json.dumps(data)
