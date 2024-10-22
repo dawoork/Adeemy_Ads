@@ -14,7 +14,7 @@ env:
 
 permissions:
     id-token: write  # Required for OpenID Connect (OIDC)
-    contents: read  # Additional read permissions for the repositor
+    contents: read  # Additional read permissions for the repository
 
 jobs:
   build:
