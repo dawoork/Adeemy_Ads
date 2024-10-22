@@ -30,15 +30,13 @@ def AdeemyFunctions(req: func.HttpRequest) -> func.HttpResponse:
         client = get_ga4_client()
         response = client.run_report(request={
             "property": f"properties/{os.environ['GA4_PROPERTY_ID']}",
-            "dimensions": [{"name": "city"}],
+            "dimensions": [{"name": "campaignId"}],
             "metrics": [
                 {"name": "advertiserAdImpressions"},  # Impresiones
                 {"name": "advertiserAdClicks"},  # Clics
-                {"name": "ctr"},  # Tasa de Clics (CTR)
                 {"name": "advertiserAdCostPerClick"},  # Costo por Clic (CPC)
-                {"name": "advertiserAdCostPerMilleImpressions"},  # Costo por Mil (CPM)
                 {"name": "advertiserAdCost"},  # Costo total
-                {"name": "roas"}  # Retorno sobre Inversión Publicitaria (ROAS)
+                {"name": "returnOnAdSpend"}  # Retorno sobre Inversión Publicitaria (ROAS)
             ],
 
             "date_ranges": [{"start_date": "7daysAgo", "end_date": "today"}]
@@ -47,14 +45,12 @@ def AdeemyFunctions(req: func.HttpRequest) -> func.HttpResponse:
         data = []
         for row in response.rows:
             data.append({
-                "city": row.dimension_values[0].value,
+                "campaignId": row.dimension_values[0].value,
                 "advertiserAdImpressions": row.metric_values[0].value,
                 "advertiserAdClicks": row.metric_values[1].value,
-                "ctr": row.metric_values[2].value,
-                "advertiserAdCostPerClick": row.metric_values[3].value,
-                "advertiserAdCostPerMilleImpressions": row.metric_values[4].value,
-                "advertiserAdCost": row.metric_values[5].value,
-                "roas": row.metric_values[6].value
+                "advertiserAdCostPerClick": row.metric_values[2].value,
+                "advertiserAdCost": row.metric_values[3].value,
+                "returnOnAdSpend": row.metric_values[4].value
             })
         # Convertir datos a JSON
         data_json = json.dumps(data)

@@ -70,10 +70,9 @@ jobs:
         uses: Azure/functions-action@v1.5.2
         with:
           app-name: 'AdeemyAnalytics'
-          slot-name:
           package: './artifact/release.zip'
-          scm-do-build-during-deployment: false
-          enable-oryx-build: false
+          scm-do-build-during-deployment: true
+          enable-oryx-build: true
 
       - name: Clean up artifacts (optional)
         run: rm -f release.zip
