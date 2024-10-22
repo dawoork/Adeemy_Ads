@@ -31,7 +31,17 @@ def AdeemyFunctions(req: func.HttpRequest) -> func.HttpResponse:
         response = client.run_report(request={
             "property": f"properties/{os.environ['GA4_PROPERTY_ID']}",
             "dimensions": [{"name": "city"}],
-            "metrics": [{"name": "activeUsers"}],
+            "metrics": [
+                {"name": "impressions"},  # Impresiones
+                {"name": "clicks"},  # Clics
+                {"name": "ctr"},  # Click-Through Rate (CTR)
+                {"name": "averageCpc"},  # Costo por Clic (CPC)
+                {"name": "averageCpm"},  # Costo por Mil (CPM)
+                {"name": "adCost"},  # Costo total
+                {"name": "roas"},  # Return on Ad Spend (ROAS)
+                {"name": "activeUsers"}  # Usuarios activos
+            ],
+
             "date_ranges": [{"start_date": "7daysAgo", "end_date": "today"}]
         })
         # Procesar la respuesta
@@ -39,7 +49,14 @@ def AdeemyFunctions(req: func.HttpRequest) -> func.HttpResponse:
         for row in response.rows:
             data.append({
                 "city": row.dimension_values[0].value,
-                "activeUsers": row.metric_values[0].value
+                "impressions": row.metric_values[0].value,
+                "clicks": row.metric_values[1].value,
+                "ctr": row.metric_values[2].value,
+                "averageCpc": row.metric_values[3].value,
+                "averageCpm": row.metric_values[4].value,
+                "adCost": row.metric_values[5].value,
+                "roas": row.metric_values[6].value,
+                "activeUsers": row.metric_values[7].value  # Añadido activeUsers
             })
         # Convertir datos a JSON
         data_json = json.dumps(data)
