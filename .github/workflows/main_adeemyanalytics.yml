@@ -39,6 +39,9 @@ jobs:
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r -x 'venv/*' '.git/*' '.github/*'
 
+      - name: List ZIP contents
+        run: unzip -l release.zip
+
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
@@ -71,8 +74,8 @@ jobs:
           app-name: 'AdeemyAnalytics'
           slot-name: 'Production'
           package: './artifact/release.zip'
-          scm-do-build-during-deployment: true
-          enable-oryx-build: true
+          scm-do-build-during-deployment: false
+          enable-oryx-build: false
 
       - name: Clean up artifacts (optional)
         run: rm -f release.zip
