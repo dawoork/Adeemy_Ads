@@ -67,7 +67,7 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy to Azure Functions
-        uses: Azure/functions-action@v2  # Actualizado a v2
+        uses: Azure/functions-action@v1.5.2
         with:
           app-name: 'AdeemyAnalytics'
           slot-name: 'Production'
