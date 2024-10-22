@@ -73,9 +73,6 @@ jobs:
           package: './artifact/release.zip'
           scm-do-build-during-deployment: true
           enable-oryx-build: true
-    
-      - name: List ZIP contents
-        run: unzip -l release.zip
-        
+
       - name: Clean up artifacts (optional)
         run: rm -f release.zip
