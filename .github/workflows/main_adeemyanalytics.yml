@@ -1,4 +1,4 @@
-# Build and deploy Python project to Azure Function App - AdeemyAnalytics
+# .github/workflows/main_adeemyanalytics.yml
 
 name: Build and deploy Python project to Azure Function App - AdeemyAnalytics
 
@@ -9,12 +9,12 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'  # Set this to the path to your web app project, defaults to the repository root
-  PYTHON_VERSION: '3.10'  # Python version to use
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'  # Ruta al proyecto
+  PYTHON_VERSION: '3.10'  # Versión de Python
 
 permissions:
-    id-token: write  # Required for OpenID Connect (OIDC)
-    contents: read  # Additional read permissions for the repository
+  id-token: write  # Requerido para OIDC
+  contents: read  # Permisos adicionales de lectura
 
 jobs:
   build:
@@ -34,10 +34,10 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
 
-      # Optional: Add step to run tests here if you have tests for your project
+      # Opcional: Añadir paso para ejecutar tests
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r -x 'venv/*' '.git/*' '.github/*'
+        run: zip -r release.zip ./* -x 'venv/*' '.git/*' '.github/*'
 
       - name: List ZIP contents
         run: unzip -l release.zip
@@ -46,9 +46,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: python-app
-          path: |
-            release.zip
-            !venv/
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -69,7 +67,7 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy to Azure Functions
-        uses: Azure/functions-action@v1
+        uses: Azure/functions-action@v2  # Actualizado a v2
         with:
           app-name: 'AdeemyAnalytics'
           slot-name: 'Production'
