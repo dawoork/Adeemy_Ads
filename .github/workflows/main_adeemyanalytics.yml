@@ -57,7 +57,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: python-app
-          path: ./artifact  # Especificamos un directorio para el artefacto
+          path: ./artifact  # Especificamos un directorio para el artefactos
 
       - name: Login to Azure using OpenID Connect (OIDC)
         uses: azure/login@v2
@@ -72,8 +72,8 @@ jobs:
           app-name: 'AdeemyAnalytics'
           slot-name: 'Production'
           package: './artifact/release.zip'
-          scm-do-build-during-deployment: false
-          enable-oryx-build: false
+          scm-do-build-during-deployment: true
+          enable-oryx-build: true
 
       - name: Clean up artifacts (optional)
         run: rm -f release.zip
