@@ -39,7 +39,7 @@ def AdeemyFunctions(req: func.HttpRequest) -> func.HttpResponse:
                 {"name": "returnOnAdSpend"}  # Retorno sobre Inversión Publicitaria (ROAS)
             ],
 
-            "date_ranges": [{"start_date": "7daysAgo", "end_date": "today"}]
+            "date_ranges": [{"start_date": "2024-01-01", "end_date": "today"}]
         })
         # Procesar la respuesta
         data = []
